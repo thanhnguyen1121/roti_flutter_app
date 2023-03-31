@@ -1,4 +1,7 @@
 {
   "sign_in": "SignIn",
-  "home_page": "Home Page"
+  "home_page": "Home Page",
+  "user_name": "Username",
+  "password": "Password",
+  "login": "Login"
 }

@@ -1,5 +1,7 @@
 import 'package:auth_nav/auth_nav.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_application/data/repositories/post_repository_impl.dart';
+import 'package:flutter_application/domain/repository/post_repository.dart';
 import 'package:flutter_application/ui/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
 import 'package:oauth2_dio/oauth2_dio.dart';
@@ -18,6 +20,8 @@ Future initializeDependencies() async {
 
   GetIt.instance.registerSingleton(AuthRepository());
 
+  GetIt.instance.registerSingleton<PostRepository>(PostRepositoryImpl());
+
   //region Local Service
   GetIt.instance.registerSingleton(await SharedPreferences.getInstance());
 
@@ -29,7 +33,7 @@ Future initializeDependencies() async {
           AuthenticationDto>(
       currentValue: GetIt.instance.get<LocalService>().getAuthenticationDto(),
       onSave: (value) {
-        GetIt.instance.get<LocalService>().saveAuth(value as AuthenticationDto);
+        GetIt.instance.get<LocalService>().saveAuth(value);
       });
 
   GetIt.instance
