@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter_application/data/dto/authentication_dto.dart';
+import 'package:flutter_application/domain/entity/authentication_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,7 +17,7 @@ class LocalService {
     return sharedPreferences.containsKey(kKeyAuth);
   }
 
-  AuthenticationDto? getAuthenticationDto() {
+  AuthenticationModel? getAuthenticationModel() {
     if (isAuthorized()) {
       return AuthenticationDto.fromJson(
           json.decode(sharedPreferences.getString(kKeyAuth)!));
@@ -24,12 +26,12 @@ class LocalService {
     }
   }
 
-  Future saveAuth(AuthenticationDto? authenticationDto) {
-    if (authenticationDto == null) {
+  Future saveAuth(AuthenticationModel? authenticationModel) {
+    if (authenticationModel == null) {
       return clear();
     } else {
-      return sharedPreferences.setString(
-          kKeyAuth, json.encode(authenticationDto.toJson()));
+      return sharedPreferences.setString(kKeyAuth,
+          json.encode((authenticationModel as AuthenticationDto).toJson()));
     }
   }
 

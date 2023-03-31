@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProfileDto profileDto) authorized,
+    required TResult Function(ProfileModel profileModel) authorized,
     required TResult Function() unAuthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProfileDto profileDto)? authorized,
+    TResult? Function(ProfileModel profileModel)? authorized,
     TResult? Function()? unAuthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProfileDto profileDto)? authorized,
+    TResult Function(ProfileModel profileModel)? authorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) =>
@@ -79,7 +79,7 @@ abstract class _$$AuthStateAuthorizedCopyWith<$Res> {
           $Res Function(_$AuthStateAuthorized) then) =
       __$$AuthStateAuthorizedCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProfileDto profileDto});
+  $Res call({ProfileModel profileModel});
 }
 
 /// @nodoc
@@ -93,13 +93,13 @@ class __$$AuthStateAuthorizedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? profileDto = null,
+    Object? profileModel = null,
   }) {
     return _then(_$AuthStateAuthorized(
-      null == profileDto
-          ? _value.profileDto
-          : profileDto // ignore: cast_nullable_to_non_nullable
-              as ProfileDto,
+      null == profileModel
+          ? _value.profileModel
+          : profileModel // ignore: cast_nullable_to_non_nullable
+              as ProfileModel,
     ));
   }
 }
@@ -107,14 +107,14 @@ class __$$AuthStateAuthorizedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthStateAuthorized implements AuthStateAuthorized {
-  const _$AuthStateAuthorized(this.profileDto);
+  const _$AuthStateAuthorized(this.profileModel);
 
   @override
-  final ProfileDto profileDto;
+  final ProfileModel profileModel;
 
   @override
   String toString() {
-    return 'AuthState.authorized(profileDto: $profileDto)';
+    return 'AuthState.authorized(profileModel: $profileModel)';
   }
 
   @override
@@ -122,12 +122,12 @@ class _$AuthStateAuthorized implements AuthStateAuthorized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthStateAuthorized &&
-            (identical(other.profileDto, profileDto) ||
-                other.profileDto == profileDto));
+            (identical(other.profileModel, profileModel) ||
+                other.profileModel == profileModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, profileDto);
+  int get hashCode => Object.hash(runtimeType, profileModel);
 
   @JsonKey(ignore: true)
   @override
@@ -139,30 +139,30 @@ class _$AuthStateAuthorized implements AuthStateAuthorized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProfileDto profileDto) authorized,
+    required TResult Function(ProfileModel profileModel) authorized,
     required TResult Function() unAuthorized,
   }) {
-    return authorized(profileDto);
+    return authorized(profileModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProfileDto profileDto)? authorized,
+    TResult? Function(ProfileModel profileModel)? authorized,
     TResult? Function()? unAuthorized,
   }) {
-    return authorized?.call(profileDto);
+    return authorized?.call(profileModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProfileDto profileDto)? authorized,
+    TResult Function(ProfileModel profileModel)? authorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {
     if (authorized != null) {
-      return authorized(profileDto);
+      return authorized(profileModel);
     }
     return orElse();
   }
@@ -200,10 +200,10 @@ class _$AuthStateAuthorized implements AuthStateAuthorized {
 }
 
 abstract class AuthStateAuthorized implements AuthState {
-  const factory AuthStateAuthorized(final ProfileDto profileDto) =
+  const factory AuthStateAuthorized(final ProfileModel profileModel) =
       _$AuthStateAuthorized;
 
-  ProfileDto get profileDto;
+  ProfileModel get profileModel;
   @JsonKey(ignore: true)
   _$$AuthStateAuthorizedCopyWith<_$AuthStateAuthorized> get copyWith =>
       throw _privateConstructorUsedError;
@@ -247,7 +247,7 @@ class _$AuthStateUnAuthorized implements AuthStateUnAuthorized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProfileDto profileDto) authorized,
+    required TResult Function(ProfileModel profileModel) authorized,
     required TResult Function() unAuthorized,
   }) {
     return unAuthorized();
@@ -256,7 +256,7 @@ class _$AuthStateUnAuthorized implements AuthStateUnAuthorized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProfileDto profileDto)? authorized,
+    TResult? Function(ProfileModel profileModel)? authorized,
     TResult? Function()? unAuthorized,
   }) {
     return unAuthorized?.call();
@@ -265,7 +265,7 @@ class _$AuthStateUnAuthorized implements AuthStateUnAuthorized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProfileDto profileDto)? authorized,
+    TResult Function(ProfileModel profileModel)? authorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {

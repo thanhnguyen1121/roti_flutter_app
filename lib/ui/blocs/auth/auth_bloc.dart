@@ -1,6 +1,8 @@
 import 'package:auth_nav/auth_nav.dart';
 import 'package:flutter_application/data/dto/dto.dart';
 import 'package:flutter_application/data/repositories/repositories.dart';
+import 'package:flutter_application/domain/entity/authentication_model.dart';
+import 'package:flutter_application/domain/repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:oauth2_dio/oauth2_dio.dart';
@@ -10,11 +12,11 @@ import 'auth_state.dart';
 class AuthBloc extends Cubit<AuthState> {
   final AuthNavigationBloc authNavigationBloc = GetIt.instance.get();
 
-  final AuthRepository _authRepository = GetIt.instance.get();
+  final _authRepository = GetIt.instance.get<AuthRepository>();
 
   AuthBloc() : super(const AuthState.unAuthorized()) {
     GetIt.instance
-        .get<Oauth2Manager<AuthenticationDto>>()
+        .get<Oauth2Manager<AuthenticationModel>>()
         .controller
         .stream
         .listen((event) {
@@ -34,12 +36,12 @@ class AuthBloc extends Cubit<AuthState> {
 
   Future login(String username, String password) async {
     final auth = await _authRepository.login(username, password);
-    GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().add(auth);
+    GetIt.instance.get<Oauth2Manager<AuthenticationModel>>().add(auth);
     await _authRepository.profile();
   }
 
   Future logout() async {
     await _authRepository.logout();
-    GetIt.instance.get<Oauth2Manager<AuthenticationDto>>().add(null);
+    GetIt.instance.get<Oauth2Manager<AuthenticationModel>>().add(null);
   }
 }

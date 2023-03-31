@@ -1,6 +1,8 @@
 import 'package:auth_nav/auth_nav.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_application/data/repositories/post_repository_impl.dart';
+import 'package:flutter_application/domain/entity/authentication_model.dart';
+import 'package:flutter_application/domain/repository/auth_repository.dart';
 import 'package:flutter_application/domain/repository/post_repository.dart';
 import 'package:flutter_application/ui/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
@@ -18,7 +20,7 @@ Future initializeDependencies() async {
 
   GetIt.instance.registerSingleton(dio);
 
-  GetIt.instance.registerSingleton(AuthRepository());
+  GetIt.instance.registerSingleton<AuthRepository>(AuthRepositoryImpl());
 
   GetIt.instance.registerSingleton<PostRepository>(PostRepositoryImpl());
 
@@ -29,15 +31,15 @@ Future initializeDependencies() async {
   //endregion
 
   //region OAuth Manager
-  Oauth2Manager<AuthenticationDto> _oauth2manager = Oauth2Manager<
-          AuthenticationDto>(
-      currentValue: GetIt.instance.get<LocalService>().getAuthenticationDto(),
+  Oauth2Manager<AuthenticationModel> _oauth2manager = Oauth2Manager<
+      AuthenticationModel>(
+      currentValue: GetIt.instance.get<LocalService>().getAuthenticationModel(),
       onSave: (value) {
         GetIt.instance.get<LocalService>().saveAuth(value);
       });
 
   GetIt.instance
-      .registerSingleton<Oauth2Manager<AuthenticationDto>>(_oauth2manager);
+      .registerSingleton<Oauth2Manager<AuthenticationModel>>(_oauth2manager);
 
   dio.interceptors.add(
     Oauth2Interceptor(
